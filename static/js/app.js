@@ -56,22 +56,21 @@ function updateFilters() {
 function filterTable() {
   
     // 8. Set the filtered data to the tableData.
-    let filteredData = [];   // empty array
+    let filteredData = tableData;   // empty array
     console.log(filters)
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
 
-    tableData.forEach((filters) => { 
+    //tableData.forEach((filters) => { 
         // variable that will append a row to the table body
-        let row = tbody.append("tr");
+        //let row = tbody.append("tr");
 
         // Loop through each field in the dataRow and add each value as a table cell (td)
-        Object.values(filters).forEach((val) => {    // val argument holds all info in sighting
-            let cell = row.append("td");
-            cell.text(val);
+        Object.entries(filters).forEach(([key,value]) => {    
+            filteredData = filteredData.filter(row => row[key] === value);
             }
         );
-    });
+    //});
       
     // 10. Finally, rebuild the table using the filtered data
     buildTable(filteredData);
